@@ -1,0 +1,19 @@
+cc=gcc
+CFLAGS=-g -Wall
+
+all: Mount clean
+
+Mount: libm.o libue.o main.o
+	$(cc) libm.o libue.o main.o -o pmount -lblkid
+
+libm.o: libm.h libm.c
+	$(cc) $(CFLAGS) -c libm.c 
+
+libue.o: libue.h libue.c
+	$(cc) $(CFLAGS) -c libue.c
+
+main.o: main.c
+	$(cc) $(CFLAGS) -c main.c
+
+clean:
+	-rm libue.o libm.o main.o

@@ -1,0 +1,16 @@
+CC=gcc
+CFLAGS=-g -Wall
+
+all: Trace_program_break clean
+
+Trace_program_break: Trace_Program_break_lib.o Trace_Program_break.o
+	$(CC) Trace_Program_break_lib.o Trace_Program_break.o -o trace_Program_break
+
+Trace_Program_break_lib.o: Trace_Program_break_lib.h Trace_Program_break_lib.c
+	$(CC) $(CFLAGS) -c Trace_Program_break_lib.c
+
+Trace_Program_break.o: Trace_Program_break.c
+	$(CC) $(CFLAGS) -c Trace_Program_break.c
+
+clean:
+	-rm Trace_Program_break_lib.o Trace_Program_break.o

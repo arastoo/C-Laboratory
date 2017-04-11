@@ -1,0 +1,22 @@
+cc=gcc
+CFLAGS=-g -Wall
+
+all: Chtimes clean
+
+Chtimes: timestamps_lib.o error_lib.o help_lib.o main.o
+	$(cc) timestamps_lib.o error_lib.o help_lib.o main.o -o chtimes
+
+timestamps_lib.o: timestamps_lib.h timestamps_lib.c
+	$(cc) $(CFLAGS) -c timestamps_lib.c
+
+error_lib.o: error_lib.h error_lib.c
+	$(cc) $(CFLAGS) -c error_lib.c
+
+help_lib.o: help_lib.h help_lib.c
+	$(cc) $(CFLAGS) -c help_lib.c
+
+main.o: main.c
+	$(cc) $(CFLAGS) -c main.c
+
+clean:
+	-rm timestamps_lib.o error_lib.o help_lib.o main.o
